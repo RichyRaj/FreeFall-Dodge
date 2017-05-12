@@ -1,0 +1,33 @@
+{
+  "name": "freefall-dodge",
+  "version": "0.0.1",
+  "description": "A Simple Javascript Game Made using Phaser.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichyRaj/FreeFall-Dodge.git"
+  },
+  "keywords": [
+    "javascript",
+    "game",
+    "2D",
+    "phaser",
+    "freefall",
+    "dodge",
+    "simple"
+  ],
+  "author": "Richard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RichyRaj/FreeFall-Dodge/issues"
+  },
+  "homepage": "https://github.com/RichyRaj/FreeFall-Dodge#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "jshint": "^2.9.4"
+  }
+}
