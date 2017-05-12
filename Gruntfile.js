@@ -9,9 +9,19 @@ module.exports = function(grunt) {
         }
       }
     },
+	concat: {
+		options: {
+			separator: ';\n',
+		},
+		dist: {
+			src: ['src/core.js'],
+			dest: 'dist/game.js',
+		},
+	},	
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.registerTask('default', ['jshint']);
 

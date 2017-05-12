@@ -27,6 +27,7 @@
   "homepage": "https://github.com/RichyRaj/FreeFall-Dodge#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "jshint": "^2.9.4"
   }
