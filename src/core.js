@@ -7,11 +7,22 @@
 		GAME_WIDTH = 450, 
 		GAME_HEIGHT = 650,
 
-		game = '',
         init = function () {
+            var state,
+                states = w.ffd.GameStates;
             if (Phaser) {
-				game = new w.Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, '', {
-				});
+				w.game = new w.Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, '');
+                // add states to the state manager
+                if(w.game) {
+                    state = w.game.state;
+                    state.add(states.BOOT, w.ffd.StateManager.bootState);
+                    state.add(states.PRE_LOAD, w.ffd.StateManager.loadState);
+                    // state.add(states.MAIN_MENU, w.ffd.StateManager.bootState);
+                    // state.add(states.GAME, w.ffd.StateManager.bootState);
+                    // state.add(states.GAME_OVER, w.ffd.StateManager.bootState);
+                    
+                    state.start(states.BOOT);                    
+                } 
             } else {
                 // not loaded
                 console.log("Phaser not loadded");

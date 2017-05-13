@@ -11,10 +11,12 @@ module.exports = function(grunt) {
     },
 	concat: {
 		options: {
-			separator: ';\n',
+			separator: '\n',
 		},
 		dist: {
-			src: ['src/core.js'],
+			src: ['src/start.js',
+      'src/state/boot.js', 'src/state/load.js',
+      'src/core.js'],
 			dest: 'dist/game.js',
 		},
 	},	
