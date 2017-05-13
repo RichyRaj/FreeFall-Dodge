@@ -13,7 +13,7 @@
             },
 			create: function () {
 				console.log("State: Assets Loaded");
-				// w.game.state.start(w.ffd.GameStates.MAIN_MENU);
+				w.game.state.start(w.ffd.GameStates.MAIN_MENU);
 			}
 		};
 	

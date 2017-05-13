@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 		},
 		dist: {
 			src: ['src/start.js',
-      'src/state/boot.js', 'src/state/load.js',
+      'src/state/boot.js', 'src/state/load.js', 'src/state/menu.js', 'src/state/play.js',
       'src/core.js'],
 			dest: 'dist/game.js',
 		},
