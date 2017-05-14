@@ -16,7 +16,8 @@
 					x: x,
 					y: y,
 					key: w.ffd.Sprites.HERO,
-					steps: HERO_STEPS
+					steps: HERO_STEPS,
+					collideBounds: true
 				});
 				hero.show();
 				hero.enablePhysics();
@@ -27,6 +28,10 @@
 			update: function () {
                 console.log("Screen Update ...");
 				var controls = w.ffd.CursorKeys;
+
+				// update enemies
+				enemySpawnSystem.update();
+
 				if (hero) {
 					if (controls.left.isDown) {
 						hero.moveLeft();

@@ -23,8 +23,7 @@
 		Enemy = function (_config) {
 			var t = this,
 				config = (typeof _config !== 'undefined' && _config) ? _config : {},
-				type = config.type || types.BASIC;
-			config.steps = 0;
+				type = config.type || types.BASIC;	
 			config.key = getSpriteKey(type);          
 			// Call the constructor of the super class
 			w.ffd.Player.call(this, config);
@@ -37,6 +36,9 @@
 
 	Enemy.prototype.fall = function () {
 		var t = this;
+		if (t.sprite) {
+			t.sprite.y += t.steps;
+		}
 	};
 
 	w.ffd.Enemy = Enemy;
