@@ -10,7 +10,7 @@
             x = config.x || 0,
             y = config.y || 0,
             key = config.key || 0,
-            steps = config.steps || DEFAULT_STEPS;
+            steps = (typeof config.steps === 'number') ? config.steps : DEFAULT_STEPS;
              
         t.sprite = '';
         t.x = x;
@@ -44,6 +44,6 @@
         }
     };
 
-    window.ffd.Player = Player;
+    w.ffd.Player = Player;
 
 })(this);

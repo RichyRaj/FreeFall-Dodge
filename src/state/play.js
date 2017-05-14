@@ -1,6 +1,7 @@
 (function (_window) {
 	var w = _window,
 		hero = '',
+		enemySpawnSystem = '',
 		HERO_STEPS = 4,	
 		gameState = {
 			create: function () {
@@ -19,6 +20,9 @@
 				});
 				hero.show();
 				hero.enablePhysics();
+
+				enemySpawnSystem = new w.ffd.Systems.EneymSpawnSystem();
+				enemySpawnSystem.start();
 			},
 			update: function () {
                 console.log("Screen Update ...");

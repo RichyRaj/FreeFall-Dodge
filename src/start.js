@@ -22,6 +22,14 @@
             GAME: 'game',
             GAME_OVER: 'game_over' 
         };
+        // Player Related Constants
+        w.ffd.EnemyTypes = {
+            BASIC: 'basic',
+            WITH_GUN: 'withGun',
+            TWO_IN_ONE: 'twoInOne'
+        };
+        // Systems
+        w.ffd.Systems = {};
     }
 
 })(this);
