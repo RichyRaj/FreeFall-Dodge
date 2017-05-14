@@ -1,15 +1,16 @@
 (function (_window) {
 	var w = _window,
         base = 'assets/sprite/',
+        sprites = w.ffd.Sprites,
 		loadState = {
             preload: function () {
                 console.log("State: Inside Pre Load");
                 // =========== Player - Hero ========== //
-                w.game.load.image('hero', base + 'hero.png');
+                w.game.load.image(sprites.HERO, base + 'hero.png');
                 // =========== Player - Enemies ========== //
-                w.game.load.image('enemy_basic', base + 'enemy_basic.png');
-                w.game.load.image('enemy_withGun', base + 'enemy_withGun.png');
-                w.game.load.image('enemy_twoInOne', base + 'enemy_twoInOne.png');
+                w.game.load.image(sprites.ENEMEY_BASIC, base + 'enemy_basic.png');
+                w.game.load.image(sprites.ENEMEY_WITH_GUN, base + 'enemy_withGun.png');
+                w.game.load.image(sprites.ENEMEY_TWO_IN_ONE, base + 'enemy_twoInOne.png');
             },
 			create: function () {
 				console.log("State: Assets Loaded");

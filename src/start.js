@@ -6,6 +6,13 @@
     // ROOT
     if (!w.ffd) {
         w.ffd = {};
+        // Game Sprite Keys
+        w.ffd.Sprites ={
+            HERO: 'hero',
+            ENEMEY_BASIC: 'enemy_basic',
+            ENEMEY_WITH_GUN: 'enemy_withGun',
+            ENEMEY_TWO_IN_ONE: 'enemy_twoInOne'
+        };
         // Game State relatad
         w.ffd.StateManager = {};
         w.ffd.GameStates = {
