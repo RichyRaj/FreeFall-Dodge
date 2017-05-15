@@ -8,12 +8,12 @@
 		eTypes = w.ffd.EnemyTypes,
 
 		// Constants
-		MAX_ENEMIES = 10,
-		MAX_PER_WAVE = 5,
-		WAVE_TIMEOUT = 2500, // Every 2.5 seconds - new wave
+		MAX_ENEMIES = 16,
+		MAX_PER_WAVE = 8,
+		WAVE_TIMEOUT = 2400, // Every 2.5 seconds - new wave
 		// Enemy speed
 		MIN_SPEED = 3,
-		MAX_SPEED = 5,
+		MAX_SPEED = 6,
 		EneymSpawnSystem = function () {
 			var t = this,
 				// Note: enemies will have ten items at any given time
@@ -39,7 +39,7 @@
 					var i,
 						enemy;
 					for (i = 0; i < MAX_PER_WAVE; i++) {
-						config.x = (i * 40);
+						config.x = (i * 60) + 10;
 						config.steps = getRandomSpeed();
 						enemy = new w.ffd.Enemy(config);
 						if (enemies.length <= MAX_ENEMIES) {
@@ -98,9 +98,11 @@
 							var parent = _parent,
 								index;
 							if (enemy) {
-								if (enemy.getY() < (worldHeight + 5)) {
+								console.log("Enemy Y" + enemy.getY() + " --  " + worldHeight);
+								if (enemy.getY() < (worldHeight - 30)) {
 									enemy.fall();
 								} else {
+									console.log("Destoy ");
 									enemy.destroy();
 									if (parent) {
 										index = parent.indexOf(enemy); 
