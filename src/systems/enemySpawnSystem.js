@@ -5,11 +5,15 @@
 // Two enemies merged as one - will be shown after a delay
 (function (_window) {
 	var w = _window,
-		// Constants
 		eTypes = w.ffd.EnemyTypes,
+
+		// Constants
 		MAX_ENEMIES = 10,
 		MAX_PER_WAVE = 5,
 		WAVE_TIMEOUT = 2500, // Every 2.5 seconds - new wave
+		// Enemy speed
+		MIN_SPEED = 3,
+		MAX_SPEED = 5,
 		EneymSpawnSystem = function () {
 			var t = this,
 				// Note: enemies will have ten items at any given time
@@ -18,9 +22,9 @@
 				enemies = [],
 				enemyWave1 = [],
 				enemyWave2 = [],
-				stopSpawning = false,
 				worldHeight = w.game.world.height,
-				worldwidth = w.game.world.width,
+				worldWidth = w.game.world.width,				
+				stopSpawning = false,
 				spawner = 0,
 				config = {
 				   type: eTypes,
@@ -28,11 +32,15 @@
 				   y: 0,
 				   steps: 4,
 				},
+				getRandomSpeed = function () {
+					return w.game.rnd.integerInRange(MIN_SPEED, MAX_SPEED);
+				},
 				setWave = function () {
 					var i,
 						enemy;
 					for (i = 0; i < MAX_PER_WAVE; i++) {
-						config.x = (i * 40); 
+						config.x = (i * 40);
+						config.steps = getRandomSpeed();
 						enemy = new w.ffd.Enemy(config);
 						if (enemies.length <= MAX_ENEMIES) {
 							enemies.push(enemy);
