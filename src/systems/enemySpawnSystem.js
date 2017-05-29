@@ -9,11 +9,15 @@
 
 		// Constants
 		MAX_ENEMIES = 16,
-		MAX_PER_WAVE = 8,
-		WAVE_TIMEOUT = 2400, // Every 2.5 seconds - new wave
+		MAX_PER_WAVE = MAX_ENEMIES / 2,
+		WAVE_TIMEOUT = 1750, // Every 1.75 seconds - new wave
+		// Min speed = 6 
+		// 60 x 6 = 360 (per sec)
+		// 60 x 4 = 240 (600)
+		// lesser approximate = 1.75 
 		// Enemy speed
-		MIN_SPEED = 3,
-		MAX_SPEED = 6,
+		MIN_SPEED = 6,
+		MAX_SPEED = 8,
 		EneymSpawnSystem = function () {
 			var t = this,
 				// Note: enemies will have ten items at any given time
@@ -61,11 +65,9 @@
 						tempWave,
 						wave;
 					
-					if (!enemyWave1.length) {
-						console.log("Spawning from e1");
+					if (!enemyWave1.length) {					
 						wave = enemyWave1;
 					} else {
-						console.log("Spawning from e2");
 						wave = enemyWave2;
 					}
 
@@ -98,11 +100,9 @@
 							var parent = _parent,
 								index;
 							if (enemy) {
-								console.log("Enemy Y" + enemy.getY() + " --  " + worldHeight);
 								if (enemy.getY() < (worldHeight - 30)) {
 									enemy.fall();
 								} else {
-									console.log("Destoy ");
 									enemy.destroy();
 									if (parent) {
 										index = parent.indexOf(enemy); 
