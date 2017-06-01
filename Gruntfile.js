@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 			src: ['src/start.js',
       'src/entities/player.js','src/entities/enemy.js',
       'src/systems/enemySpawnSystem.js',
-      'src/state/boot.js', 'src/state/load.js', 'src/state/menu.js', 'src/state/play.js',
+      'src/state/boot.js', 'src/state/load.js', 'src/state/menu.js', 'src/state/play.js', 'src/state/gameOver.js',
       'src/core.js'],
 			dest: 'dist/game.js',
 		},

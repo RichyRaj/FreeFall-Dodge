@@ -3,9 +3,22 @@
 		hero = '',
 		enemySpawnSystem = '',
 		HERO_STEPS = 4,
+		gameOver = false,
 
 		onCollision = function () {
 			console.log('BANG BANG BANG');
+			gameOver = true;
+			// Clean up 
+			if (enemySpawnSystem) {
+				enemySpawnSystem.shutDown();
+			}
+			enemySpawnSystem = '';
+			if (hero) {
+				hero.destroy();
+			}
+			hero = '';
+			console.log("PLay State Destroyed");
+			w.game.state.start(w.ffd.GameStates.GAME_OVER);
 		},
 
 		gameState = {
@@ -32,17 +45,19 @@
 				enemySpawnSystem.detectCollision(hero, onCollision);
 			},
 			update: function () {
-                console.log("Screen Update ...");
-				var controls = w.ffd.CursorKeys;
+				if (!gameOver) {
+					console.log("Screen Update ...");
+					var controls = w.ffd.CursorKeys;
 
-				// update enemies
-				enemySpawnSystem.update();
-				
-				if (hero) {
-					if (controls.left.isDown) {
-						hero.moveLeft();
-					} else if (controls.right.isDown) {
-						hero.moveRight();
+					// update enemies
+					enemySpawnSystem.update();
+					
+					if (hero) {
+						if (controls.left.isDown) {
+							hero.moveLeft();
+						} else if (controls.right.isDown) {
+							hero.moveRight();
+						}
 					}
 				}
 			}

@@ -19,7 +19,7 @@
                     state.add(states.PRE_LOAD, w.ffd.StateManager.loadState);
                     state.add(states.MAIN_MENU, w.ffd.StateManager.menuState);
                     state.add(states.GAME, w.ffd.StateManager.gameState);
-                    // state.add(states.GAME_OVER, w.ffd.StateManager.bootState);
+                    state.add(states.GAME_OVER, w.ffd.StateManager.gameOverState);
                     
                     state.start(states.BOOT);                    
                 } 

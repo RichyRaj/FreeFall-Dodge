@@ -30,7 +30,6 @@
 				enemyWave2 = [],
 				worldHeight = w.game.world.height,
 				worldWidth = w.game.world.width,				
-				stopSpawning = false,
 				spawner = 0,
 				config = {
 				   type: eTypes,
@@ -38,6 +37,7 @@
 				   y: 0,
 				   steps: 4,
 				},
+				gameOver = false,
 				getRandomSpeed = function () {
 					return w.game.rnd.integerInRange(MIN_SPEED, MAX_SPEED);
 				},
@@ -89,13 +89,14 @@
 					setWave();
 					setWave();
 					wave();
-					spawner = setInterval(function (){
-						if (!stopSpawning) {
+					spawner = w.setInterval(function (){
+						if (!gameOver) {
 							wave();
 						}
 					}, WAVE_TIMEOUT);
 				},
 				onClsn = function () {
+					gameOver = true;
 					// Collision detected
 					if (onCollision) {
 						onCollision();
@@ -137,6 +138,30 @@
 
 					}
 					
+				},
+				shutDown = function () {
+					var i,
+						enemy;
+					gameOver = true;
+					// stop spawning
+					w.clearInterval(spawner);
+					spawner = 0;
+					hero = '';
+					
+					for (i = 0; i < enemyWave1.length; i++) {
+						enemy = enemyWave1[i];
+						enemy.destroy();
+					}
+					for (i = 0; i < enemyWave2.length; i++) {
+						enemy = enemyWave2[i];
+						enemy.destroy();
+					}
+					for (i = 0; i < enemies.length; i++) {
+						enemy = enemies[i];
+						enemy.destroy();
+					}
+					enemy = enemies = enemyWave1 = enemyWave2 = '';
+					console.log("Spawner Destroyed");				
 				};
 				
 			// Public Interface
@@ -147,7 +172,12 @@
 				detectCollision(_hero, _onCollision);
 			};
 			t.update = function () {
-				update();
+				if (!gameOver) {
+					update();
+				}
+			};
+			t.shutDown = function () {
+				shutDown();
 			};
 		};
 	w.ffd.Systems.EneymSpawnSystem = EneymSpawnSystem;
