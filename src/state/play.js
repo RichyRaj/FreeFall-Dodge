@@ -2,7 +2,12 @@
 	var w = _window,
 		hero = '',
 		enemySpawnSystem = '',
-		HERO_STEPS = 4,	
+		HERO_STEPS = 4,
+
+		onCollision = function () {
+			console.log('BANG BANG BANG');
+		},
+
 		gameState = {
 			create: function () {
                 console.log("State: Inside Game State");
@@ -24,6 +29,7 @@
 
 				enemySpawnSystem = new w.ffd.Systems.EneymSpawnSystem();
 				enemySpawnSystem.start();
+				enemySpawnSystem.detectCollision(hero, onCollision);
 			},
 			update: function () {
                 console.log("Screen Update ...");
@@ -31,7 +37,7 @@
 
 				// update enemies
 				enemySpawnSystem.update();
-
+				
 				if (hero) {
 					if (controls.left.isDown) {
 						hero.moveLeft();

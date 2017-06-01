@@ -23,6 +23,8 @@
 				// Note: enemies will have ten items at any given time
 				// Each wave will include the first five
 				// Each wave will also push five more
+				hero,
+				onCollision = '',
 				enemies = [],
 				enemyWave1 = [],
 				enemyWave2 = [],
@@ -93,6 +95,16 @@
 						}
 					}, WAVE_TIMEOUT);
 				},
+				onClsn = function () {
+					// Collision detected
+					if (onCollision) {
+						onCollision();
+					}
+				},
+				detectCollision = function (_hero, _onCollision) {
+					hero = (typeof _hero !== 'undefined') ? _hero : '';
+					onCollision = (typeof _onCollision === 'function') ? _onCollision : '';
+				},
 				update = function () {
 					var i,
 						enemy,
@@ -102,6 +114,7 @@
 							if (enemy) {
 								if (enemy.getY() < (worldHeight - 30)) {
 									enemy.fall();
+									w.game.physics.arcade.overlap(hero.sprite, enemy.sprite, onClsn, null, null);
 								} else {
 									enemy.destroy();
 									if (parent) {
@@ -123,11 +136,15 @@
 						updateEnemy(enemyWave2);
 
 					}
+					
 				};
 				
 			// Public Interface
 			t.start = function () {
 				start();
+			};
+			t.detectCollision = function (_hero, _onCollision) {
+				detectCollision(_hero, _onCollision);
 			};
 			t.update = function () {
 				update();
