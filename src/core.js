@@ -5,7 +5,7 @@
 		
 		// Module constants
 		GAME_WIDTH = 450, 
-		GAME_HEIGHT = 650,
+		GAME_HEIGHT = 700,
 
         init = function () {
             var state,

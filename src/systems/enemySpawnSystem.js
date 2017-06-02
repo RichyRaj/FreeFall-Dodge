@@ -69,8 +69,10 @@
 					
 					if (!enemyWave1.length) {					
 						wave = enemyWave1;
+						console.log("Spawn 1");
 					} else {
 						wave = enemyWave2;
+						console.log("Spawn 2");
 					}
 
 					tempWave = getWave();

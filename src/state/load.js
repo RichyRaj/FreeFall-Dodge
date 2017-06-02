@@ -6,7 +6,7 @@
             preload: function () {
                 console.log("State: Inside Pre Load");
                 // =========== Player - Hero ========== //
-                w.game.load.image(sprites.HERO, base + 'hero.png');
+                w.game.load.image(sprites.HERO, base + 'heroSq.png');
                 // =========== Player - Enemies ========== //
                 w.game.load.image(sprites.ENEMEY_BASIC, base + 'enemy_basic.png');
                 w.game.load.image(sprites.ENEMEY_WITH_GUN, base + 'enemy_withGun.png');
