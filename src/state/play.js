@@ -1,14 +1,30 @@
 (function (_window) {
 	var w = _window,
 		hero = '',
+		scoreSystem = '',
+		scoreTimeout = 0,
 		enemySpawnSystem = '',
 		HERO_STEPS = 4,
 		gameOver = false,
 
+		updateScore = function (_score) {
+			var score = (typeof _score === 'number') ? _score : 0;
+			if (scoreSystem) {
+				scoreSystem.update(score);
+			}
+		},
+
 		onCollision = function () {
+			var finalScore = 0;
 			console.log('BANG BANG BANG');
 			gameOver = true;
-			// Clean up 
+			clearInterval(scoreTimeout);
+			scoreTimeout = 0;
+			if (scoreSystem) {
+				finalScore = scoreSystem.getScore();
+				scoreSystem.shutDown();
+			}
+			scoreSystem = '';
 			if (enemySpawnSystem) {
 				enemySpawnSystem.shutDown();
 			}
@@ -18,7 +34,7 @@
 			}
 			hero = '';
 			console.log("PLay State Destroyed");
-			w.game.state.start(w.ffd.GameStates.GAME_OVER);
+			w.game.state.start(w.ffd.GameStates.GAME_OVER, true, false, finalScore);
 		},
 
 		gameState = {
@@ -29,6 +45,14 @@
 					ht = image.height,
 					x = (w.game.world.width / 2) - (wt / 2),
 					y = w.game.world.height - (ht + 5);
+
+				// Score
+				scoreSystem = new w.ffd.Systems.ScoreSystem();
+				scoreTimeout =  setInterval(function () {
+					if (!gameOver) {
+						updateScore(1);
+					}
+				}, 1000);
 
 				hero = new w.ffd.Player({
 					x: x,
